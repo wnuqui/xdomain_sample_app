@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <h3>XDomain Demo</h3>
+    <p>
+      Cross-domain XHR access to XSA Backend app (https://xsa-backend.herokuapp.com/test)<br>
+      From '<span id="host"></span>'<br>
+    </p>
+
+    <script src="//cdn.rawgit.com/jpillora/xdomain/0.7.4/dist/xdomain.min.js"
+            slave="https://xsa-backend.herokuapp.com/proxy.html"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+    <h5>Same domain: 'data.json'</h5>
+    <pre id='same'>Loading...</pre>
+
+    <h5>Cross domain: 'https://xsa-backend.herokuapp.com/test'</h5>
+    <p><i>XHRs will be intercepted and silently sent over to a hidden iframe</i></p>
+    <pre id='cross'>Loading...</pre>
+
+    <script type="text/javascript">
+      // show current origin
+      $("#host").html(xdomain.origin);
+      // jquery ajax call
+      $("#same").load('data');
+      $("#cross").load('https://xsa-backend.herokuapp.com/test');
+    </script>
+  </body>
+</html>
